@@ -11,7 +11,7 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   //api key
-  final _weatherService = WeatherService('7f427dc6d3663d41aafed631484e389b');
+  final _weatherService = WeatherService('3fb78241d86f83f6701a533b8f04737a');
   Weather? _weather;
 
   // fetch weather
@@ -54,7 +54,7 @@ class _WeatherPageState extends State<WeatherPage> {
             Text(_weather?.cityName ?? 'loading city..'),
 
             //temperature
-            Text('${_weather?.temperature.round()}°C'),
+            Text('${_weather != null ? _weather?.temperature.round() : "loading weather.."}°C'),
           ],
         ),
       ),
