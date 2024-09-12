@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_minimal_weather_app/models/city_model.dart';
 import 'package:flutter_minimal_weather_app/models/weather_model.dart';
 import 'package:flutter_minimal_weather_app/services/weather_service.dart';
 
@@ -17,11 +18,15 @@ class _WeatherPageState extends State<WeatherPage> {
   // fetch weather
   _fetchWeather() async {
     // get current city
-    String cityName = await _weatherService.getCurrentCity();
+    CityModel? city = await _weatherService.getCurrentCity();
+
+    if (city == null) {
+      throw Exception('failed to load weather data');
+    }
 
     // get weather for city
     try {
-      final weather = await _weatherService.getWeather(cityName);
+      final weather = await _weatherService.getWeather(city);
 
       setState(() {
         _weather = weather;
